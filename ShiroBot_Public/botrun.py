@@ -217,7 +217,7 @@ async def prune(ctx, number):
 		await bot.delete_messages(mgs)
 		await bot.say("`{}` messages deleted from **{}**".format(number-1, ctx.message.author.name))
 	except:
-		x = await bot.say("I couldn't prune `{}` messages :cry: do I have *Manage Messages* permission?")
+		x = await bot.say("I couldn't prune `{}` messages :cry: do I have *Manage Messages* permission?".format(number-1))
 		await asyncio.sleep(10)
 		return await bot.delete_message(x)
 
