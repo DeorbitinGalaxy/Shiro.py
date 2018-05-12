@@ -1,6 +1,6 @@
 prefix 	  = ">"
-token 	  = "NDQ0MTk4OTQ1MTgzMzY3MTg5.DdYcqg.0Nnxt9nlbykuYbEgw9pK_a7XLWk"
-owner_ids = ["285495027411582977", "161600697564004352"]
+token 	  = ""
+owner_ids = []
 #======================================================
 loop_time = 240 #seconds #please use multples of 60
 #======================================================
