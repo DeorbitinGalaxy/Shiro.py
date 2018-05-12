@@ -162,7 +162,7 @@ async def ban(ctx, member, *, reason="None specified"):
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
 	try:
-		await bot.ban(member, delete_message_days=1)
+		await bot.ban(member, delete_message_days = 1)
 		embed=discord.Embed(description = "**{}** has been **Banned** from **{}**. Reason: **{}**".format(member.name, ctx.message.server.name, reason), color = color_blue)
 		await bot.say(embed=embed)
 	except Exception as e:
@@ -172,7 +172,7 @@ async def ban(ctx, member, *, reason="None specified"):
 			return await bot.delete_message(x)
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Sban"])
-@commands.has_permissions(administrator=True)
+@commands.has_permissions(ban_members=True)
 async def sban(ctx, member, *, reason="None specified"):
 	await bot.delete_message(ctx.message)
 	try:
@@ -191,7 +191,6 @@ async def sban(ctx, member, *, reason="None specified"):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Ping"])
 async def ping(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		pingtime = time.time()
 		pingms = await bot.say("Pinging....... " + ctx.message.server.name)
@@ -241,7 +240,7 @@ async def spam(ctx):
 		overwrite=discord.PermissionOverwrite()
 		overwrite.send_messages=False
 		await bot.edit_channel_permissions(ctx.message.channel, ctx.message.server.default_role, overwrite)
-		embed=discord.Embed(description = "Channel {} has been muted, type `>nospam` in that channel to unmute it".format(ctx.message.channel.name), color = 0x3333cc)
+		embed=discord.Embed(description = "Channel {} has been muted, type `>nospam` in that channel to unmute it".format(ctx.message.channel.name), color = color_blue)
 		await bot.send_message(ctx.message.author, embed=embed)
 	except:
 		await bot.say("I couldn't mute this channel, do I have *Manage Channel* permissions ?")
@@ -253,7 +252,7 @@ async def nospam(ctx):
 		overwrite=discord.PermissionOverwrite()
 		overwrite.send_messages=None
 		await bot.edit_channel_permissions(ctx.message.channel, ctx.message.server.default_role, overwrite)
-		embed=discord.Embed(description = "Channel {} has been unmuted".format(ctx.message.channel.name), color = 0x3333cc)
+		embed=discord.Embed(description = "Channel {} has been unmuted".format(ctx.message.channel.name), color = color_blue)
 		await bot.send_message(ctx.message.author, "Channel {} has been unmuted".format(ctx.message.channel.name))
 	except:
 		await bot.say("I couldn't unmute unmute this channel, do I have *Manage Channel* permissions ?")
@@ -262,14 +261,13 @@ async def nospam(ctx):
 @commands.has_permissions(administrator=True)
 @commands.cooldown(10,30)
 async def serverinfo(ctx):
-	await bot.send_typing(ctx.message.channel)
 	server = ctx.message.server
 	roles = [x.name for x in server.role_hierarchy]
 	role_length = len(roles)
 	roles = ', '.join(roles)
 	channels = len(server.channels);
 	time = str(server.created_at); time = time.split(' '); time= time[0];
-	embed=discord.Embed(description = "Info on this server", title = ':thinking:', color = 0x3333cc)
+	embed=discord.Embed(description = "Info on this server", title = ':thinking:', color = color_blue)
 	embed.set_thumbnail(url = server.icon_url)
 	embed.add_field(name = '__Server __', value = str(server))
 	embed.add_field(name = '__Server ID__', value = str(server.id))
@@ -342,7 +340,6 @@ async def ship(ctx, word1, word2):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Dice"])
 async def dice(ctx):
-	await bot.send_typing(ctx.message.channel)
 	embed = discord.Embed(color = color_blue)
 	embed.set_author(name = ctx.message.author.name)
 	embed.add_field(name = 'RESULT', value = str(random.randint(1,6)))
@@ -350,7 +347,6 @@ async def dice(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Embed"])
 async def embed(ctx, *, message:str):
-	await bot.send_typing(ctx.message.channel)
 	embed = discord.Embed(color = color_blue)
 	embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 	embed.description = message
@@ -365,10 +361,9 @@ async def say(ctx, *, message):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Rps"])
 async def rps(ctx, *, message):
-	await bot.send_typing(ctx.message.channel)
 	ans = ["rock", "paper", "scissors"]
 	pick=ans[random.randint(0, 2)]
-	embed=discord.Embed(title = "Bot VS {}".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Bot VS {}".format(ctx.message.author.name), color = color_blue)
 	embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 	if message.lower() != ans[0] and message.lower() != ans[1] and message.lower() != ans[2] :
 		return await bot.say("Pick Rock Paper or Scissors")
@@ -421,7 +416,6 @@ async def help(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Aes"])
 async def aes(ctx, *, message:str):
-	await bot.send_typing(ctx.message.channel)
 	arr=[]
 	message = str(message)
 	for i in range (len(message)):
@@ -430,7 +424,6 @@ async def aes(ctx, *, message:str):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Aesb"])
 async def aesb(ctx, *, message:str):
-	await bot.send_typing(ctx.message.channel)
 	arr=[]
 	message = str(message)
 	for i in range (len(message)):
@@ -439,7 +432,6 @@ async def aesb(ctx, *, message:str):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Aesi"])
 async def aesi(ctx, *, message:str):
-	await bot.send_typing(ctx.message.channel)
 	arr=[]
 	message = str(message)
 	for i in range (len(message)):
@@ -448,7 +440,6 @@ async def aesi(ctx, *, message:str):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["aesbi", "Aesbi", "Aesib"])	
 async def aesib(ctx, *, message:str):
-	await bot.send_typing(ctx.message.channel)
 	arr=[]
 	message = str(message)
 	for i in range (len(message)):
@@ -457,11 +448,10 @@ async def aesib(ctx, *, message:str):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["intellectify"])
 async def intel(ctx, *, message:str):
-	await bot.send_typing(ctx.message.channel)
 	string = ""
 	for x in message:
 		string += random.choice([x.upper(), x.lower()])
-	embed=discord.Embed(description = string, color = 0x3333cc)
+	embed=discord.Embed(description = string, color = color_blue)
 	embed.set_image(url = "https://pbs.twimg.com/media/C_ZudDVWsAAojma.jpg")
 	await bot.say(embed=embed)
 
@@ -469,7 +459,7 @@ async def intel(ctx, *, message:str):
 @commands.cooldown(5, 30)
 async def invite(ctx):
 	embed=discord.Embed(title = "Here is the bot's invite link **{}**!".format(ctx.message.author.name),\
-	description = bot_invite_link, color = 0x3333cc)
+	description = bot_invite_link, color = color_blue)
 	await bot.say(embed=embed)
 
 #     _____ _   _ _   _ 
@@ -482,7 +472,7 @@ async def invite(ctx):
 async def movie(ctx, *, name:str=None):
 	await bot.send_typing(ctx.message.channel)
 	if name is None:
-		embed=discord.Embed(description = "Please specify a movie, *eg. >movie Inception*", color = 0x3333cc)
+		embed=discord.Embed(description = "Please specify a movie, *eg. >movie Inception*", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -490,7 +480,7 @@ async def movie(ctx, *, name:str=None):
 	url = "http://www.omdbapi.com/?t={}&apikey={}".format(name, key)
 	response = requests.get(url)
 	x = json.loads(response.text)
-	embed=discord.Embed(title = "**{}**".format(name).upper(), description = "Here is your movie {}".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "**{}**".format(name).upper(), description = "Here is your movie {}".format(ctx.message.author.name), color = color_blue)
 	if x["Poster"] != "N/A":
 		embed.set_thumbnail(url = x["Poster"])
 	embed.add_field(name = "__Title__", value = x["Title"])
@@ -514,7 +504,7 @@ async def dog(ctx):
 		url = "https://dog.ceo/api/breeds/image/random"
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(color = 0x3333cc)
+		embed=discord.Embed(color = color_blue)
 		embed.set_author(name =  "Here's Your Dog {}".format(ctx.message.author.name), icon_url = ctx.message.author.avatar_url)
 		embed.set_image(url = data["message"])
 		await bot.say(embed=embed)
@@ -530,7 +520,7 @@ async def shibe(ctx):
 		url = "http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=false"
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(color = 0x3333cc)
+		embed=discord.Embed(color = color_blue)
 		embed.set_author(name =  "Here's Your Shibe {}".format(ctx.message.author.name), icon_url = ctx.message.author.avatar_url)
 		embed.set_image(url = data[0])
 		await bot.say(embed=embed)
@@ -546,7 +536,7 @@ async def cat(ctx):
 		url = "http://shibe.online/api/cats?count=1&urls=true&httpsUrls=false"
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(color = 0x3333cc)
+		embed=discord.Embed(color = color_blue)
 		embed.set_author(name =  "Here's Your Cat {}".format(ctx.message.author.name), icon_url = ctx.message.author.avatar_url)
 		embed.set_image(url = data[0])
 		await bot.say(embed=embed)
@@ -562,7 +552,7 @@ async def bird(ctx):
 		url = "http://shibe.online/api/birds?count=1&urls=true&httpsUrls=false"
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(color = 0x3333cc)
+		embed=discord.Embed(color = color_blue)
 		embed.set_author(name =  "Here's Your Bird {}".format(ctx.message.author.name), icon_url = ctx.message.author.avatar_url)
 		embed.set_image(url = data[0])
 		await bot.say(embed=embed)
@@ -578,7 +568,7 @@ async def fox(ctx):
 		url = "https://randomfox.ca/floof"
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(color = 0x3333cc)
+		embed=discord.Embed(color = color_blue)
 		embed.set_author(name =  "Here's Your Fox {}".format(ctx.message.author.name), icon_url = ctx.message.author.avatar_url)
 		embed.set_image(url = data["image"])
 		await bot.say(embed=embed)
@@ -595,7 +585,7 @@ async def lizard(ctx):
 		response = requests.get(url)
 		data = json.loads(response.text)
 		link = data["url"]
-		embed=discord.Embed(color = 0x3333cc)
+		embed=discord.Embed(color = color_blue)
 		embed.set_author(name =  "Here's Your Lizard {}".format(ctx.message.author.name), icon_url = ctx.message.author.avatar_url)
 		embed.set_image(url = link)
 		await bot.say(embed=embed)
@@ -613,7 +603,7 @@ async def urban(ctx, *, msg:str):
 		response = requests.get(api, params=[("term", word)]).json()
 		if len(response["list"]) == 0:
 			return await bot.say("Could not find that word!")
-		embed = discord.Embed(title = "🔍 Search Word", description = word, color = 0x3333cc)
+		embed = discord.Embed(title = "🔍 Search Word", description = word, color = color_blue)
 		embed.add_field(name = "Top definition:", value = response['list'][0]['definition'])
 		embed.add_field(name = "Examples:", value = response['list'][0]["example"])
 		embed.set_footer(text = "Tags: " + ', '.join(response['tags']))
@@ -632,7 +622,7 @@ async def chuck(ctx):
 		data = json.loads(response.text)
 		value = data["value"]
 		joke = value["joke"]
-		embed=discord.Embed(description = joke, color = 0x3333cc)
+		embed=discord.Embed(description = joke, color = color_blue)
 		embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 		await bot.say(embed=embed)
 	except:
@@ -648,7 +638,7 @@ async def joke(ctx):
 		response = requests.get(url)
 		data = json.loads(response.text)
 		data = data[random.randint(0, 9)]
-		embed=discord.Embed(description = "{}\n{}".format(data["setup"], data["punchline"]), color = 0x3333cc)
+		embed=discord.Embed(description = "{}\n{}".format(data["setup"], data["punchline"]), color = color_blue)
 		embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 		await bot.say(embed=embed)
 	except:
@@ -663,7 +653,7 @@ async def yesno(ctx):
 		url = "https://yesno.wtf/api"	
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(description = "I say {} {}!".format(data["answer"].upper(), ctx.message.author.name), color = 0x3333cc)
+		embed=discord.Embed(description = "I say {} {}!".format(data["answer"].upper(), ctx.message.author.name), color = color_blue)
 		embed.set_image(url = data["image"])
 		await bot.say(embed=embed)
 	except:
@@ -678,7 +668,7 @@ async def fakeid(ctx):
 		url = "http://uinames.com/api/?ext"
 		response = requests.get(url)
 		data = json.loads(response.text)
-		embed=discord.Embed(title = "All information listed is fake and random", color = 0x3333cc)
+		embed=discord.Embed(title = "All information listed is fake and random", color = color_blue)
 		embed.set_footer(text = "Information from http://uinames.com/api/")
 		embed.add_field(name = "Name: {} {}".format(data["name"], data["surname"]), value = "Gender: {}\nRegion: {}\nAge: {}\nPhone: {}\nEmail: {}\nPassword: {}".format(data["gender"], data["region"], data["age"], data["phone"], data["email"], data["password"]))
 		await bot.say(embed=embed)
@@ -699,7 +689,7 @@ async def randomavatar(ctx, tag:str):
 		if st.content not in ["1", "2", "3", "4"]:
 			return await bot.say("Choose between **1 2 3 4**, run the command again!")
 		url = "https://robohash.org/{}.png?bgset=bg{}&set=set{}".format(tag, bg.content, st.content)
-		embed=discord.Embed(description = "Random Avatar UwU", color = 0x3333cc)
+		embed=discord.Embed(description = "Random Avatar UwU", color = color_blue)
 		embed.set_image(url=url)
 		embed.set_author(name = ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 		embed.set_footer(text = "From robohash.org")
@@ -713,7 +703,7 @@ async def randomavatar(ctx, tag:str):
 async def poll(ctx, *, message):
 	await bot.send_typing(ctx.message.channel)
 	try:
-		embed=discord.Embed(description = message, color = 0x3333cc)
+		embed=discord.Embed(description = message, color = color_blue)
 		embed.set_author(name = "Poll from " + ctx.message.author.name, icon_url = ctx.message.author.avatar_url)
 		x = await bot.say(embed=embed)
 		await bot.add_reaction(x, "👍")
@@ -732,11 +722,10 @@ async def poll(ctx, *, message):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Cute"])
 async def cute(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		y = random.choice(links_cute)
 		await bot.send_typing(ctx.message.channel)
-		embed=discord.Embed(description = "Here is a cute anime girl for you {}!".format(ctx.message.author.name), color = 0x3333cc)
+		embed=discord.Embed(description = "Here is a cute anime girl for you {}!".format(ctx.message.author.name), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -746,7 +735,6 @@ async def cute(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Kiss"])
 async def kiss(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		indexTest = ctx.message.mentions[0]
 		members = ""
@@ -759,7 +747,7 @@ async def kiss(ctx, *, member=""):
 		return await bot.delete_message(x)
 	try:
 		y = random.choice(links_kiss)
-		embed=discord.Embed(description = "{} kissed {}! Cute :3".format(ctx.message.author.mention, members), color = 0x3333cc)
+		embed=discord.Embed(description = "{} kissed {}! Cute :3".format(ctx.message.author.mention, members), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -769,7 +757,6 @@ async def kiss(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Hug", "huggle", "Huggle"])
 async def hug(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		indexTest = ctx.message.mentions[0]
 		members = ""
@@ -782,7 +769,7 @@ async def hug(ctx, *, member=""):
 		return await bot.delete_message(x)
 	try:
 		y = random.choice(links_hug)
-		embed=discord.Embed(description = "{} hugged {} tightly, awww!".format(ctx.message.author.mention, members), color = 0x3333cc)
+		embed=discord.Embed(description = "{} hugged {} tightly, awww!".format(ctx.message.author.mention, members), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -792,7 +779,6 @@ async def hug(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Pat"])
 async def pat(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		indexTest = ctx.message.mentions[0]
 		members = ""
@@ -805,7 +791,7 @@ async def pat(ctx, *, member=""):
 		return await bot.delete_message(x)
 	try:
 		y = random.choice(links_pat)
-		embed=discord.Embed(description = "{} patted {} UwU!".format(ctx.message.author.mention, members), color = 0x3333cc)
+		embed=discord.Embed(description = "{} patted {} UwU!".format(ctx.message.author.mention, members), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -815,7 +801,6 @@ async def pat(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Slap"])
 async def slap(ctx, *, member):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		indexTest = ctx.message.mentions[0]
 		members = ""
@@ -828,7 +813,7 @@ async def slap(ctx, *, member):
 		return await bot.delete_message(x) 
 	try:
 		y = random.choice(links_slap)
-		embed=discord.Embed(description = "{} slapped {}!, hmmm".format(ctx.message.author.mention, members), color = 0x3333cc)
+		embed=discord.Embed(description = "{} slapped {}!, hmmm".format(ctx.message.author.mention, members), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -838,10 +823,9 @@ async def slap(ctx, *, member):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Blush"])
 async def blush(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		y = random.choice(links_blush)
-		embed=discord.Embed(description = "{} blushed!".format(ctx.message.author.mention), color = 0x3333cc)
+		embed=discord.Embed(description = "{} blushed!".format(ctx.message.author.mention), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -851,7 +835,6 @@ async def blush(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Lick"])
 async def lick(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		indexTest = ctx.message.mentions[0]
 		members = ""
@@ -864,7 +847,7 @@ async def lick(ctx, *, member=""):
 		return await bot.delete_message(x)
 	try:
 		y = random.choice(links_lick)
-		embed=discord.Embed(description = "{} licked {}, mmm tasty!".format(ctx.message.author.mention, members), color = 0x3333cc)
+		embed=discord.Embed(description = "{} licked {}, mmm tasty!".format(ctx.message.author.mention, members), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -874,17 +857,16 @@ async def lick(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Mad", "Angry", "angry"])
 async def mad(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_mad)
 		if members == "":
-			embed=discord.Embed(description = "{} is mad for some reason!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is mad for some reason!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "{} is mad cause of {}! Better do something!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is mad cause of {}! Better do something!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -894,17 +876,16 @@ async def mad(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Scared"])
 async def scared(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_scared)
 		if members == "":
-			embed=discord.Embed(description = "{} is scared for some reason!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is scared for some reason!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "{} is scared of {}!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is scared of {}!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -914,10 +895,9 @@ async def scared(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Tired"])
 async def tired(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		y = random.choice(links_tired)
-		embed=discord.Embed(description = "{} feels so tired!".format(ctx.message.author.mention), color = 0x3333cc)
+		embed=discord.Embed(description = "{} feels so tired!".format(ctx.message.author.mention), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -927,17 +907,16 @@ async def tired(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Cry"])
 async def cry(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_cry)
 		if members == "":
-			embed=discord.Embed(description = "{} is crying for some reason!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is crying for some reason!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "{} is crying cause of {}!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is crying cause of {}!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -947,11 +926,10 @@ async def cry(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Nimu"])
 async def nimu(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		url = ["https://media.giphy.com/media/ruYMwmyOtpIxa/giphy.gif"]
 		y = random.choice(links)
-		embed=discord.Embed(description = "Nimu nimu nimu nimu nimu nimu nimu nimu!\nhttps://www.youtube.com/watch?v=K-6XHtMFP5Q", color = 0x3333cc)
+		embed=discord.Embed(description = "Nimu nimu nimu nimu nimu nimu nimu nimu!\nhttps://www.youtube.com/watch?v=K-6XHtMFP5Q", color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -961,17 +939,16 @@ async def nimu(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Tickle"])
 async def tickle(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_tickle)
 		if member == "":
-			embed=discord.Embed(description = "I will tickle you {}, hihihi!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "I will tickle you {}, hihihi!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "{} is tickling {}, hihihi!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is tickling {}, hihihi!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -981,10 +958,9 @@ async def tickle(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Run"])
 async def run(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		y = random.choice(links_run)
-		embed=discord.Embed(description = "{} is running so fast".format(ctx.message.author.name), color = 0x3333cc)
+		embed=discord.Embed(description = "{} is running so fast".format(ctx.message.author.name), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -994,17 +970,16 @@ async def run(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Bite"])
 async def bite(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_bite)
 		if member == "":
-			embed=discord.Embed(description = "I will bite you hard {}, aaaarg!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "I will bite you hard {}, aaaarg!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "{} is biting {}, kinky!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "{} is biting {}, kinky!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -1014,10 +989,14 @@ async def bite(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Plot"])
 async def plot(ctx):
-	await bot.send_typing(ctx.message.channel) 
+	if ctx.message.channel.is_nsfw == False:
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
+		x = await bot.say(embed=embed)
+		await asyncio.sleep(5)
+		return await bot.delete_message(x)
 	try:
 		y = random.choice(links_plot)
-		embed=discord.Embed(description = "Here is an anime with some thicc **plot** {}!".format(ctx.message.author.mention), color = 0x3333cc)
+		embed=discord.Embed(description = "Here is an anime with some thicc **plot** {}!".format(ctx.message.author.mention), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -1027,10 +1006,9 @@ async def plot(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Nervous"])
 async def nervous(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		y = random.choice(links_nervous)
-		embed=discord.Embed(description = "{} is so nervous".format(ctx.message.author.mention), color = 0x3333cc)
+		embed=discord.Embed(description = "{} is so nervous".format(ctx.message.author.mention), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -1040,17 +1018,16 @@ async def nervous(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Poke"])
 async def poke(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:		
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_poke)
 		if member == "":
-			embed=discord.Embed(description = "I poked you {}! hihi!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "I poked you {}! hihi!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "{} pokes {}!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "{} pokes {}!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -1060,10 +1037,9 @@ async def poke(ctx, *, member=""):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Pout"])
 async def pout(ctx):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		y = random.choice(links_pout)
-		embed=discord.Embed(description = "{} pouted!".format(ctx.message.author.mention), color = 0x3333cc)
+		embed=discord.Embed(description = "{} pouted!".format(ctx.message.author.mention), color = color_blue)
 		embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -1073,17 +1049,16 @@ async def pout(ctx):
 
 @bot.command(pass_context=True, no_pm=True, aliases=["Pinch"])
 async def pinch(ctx, *, member=""):
-	await bot.send_typing(ctx.message.channel)
 	try:
 		members = ""
 		for member in ctx.message.mentions:
 			members += " " + member.mention
 		y = random.choice(links_pinch)
 		if member == "":
-			embed=discord.Embed(description = "Pinching {} is so much fun!".format(ctx.message.author.mention), color = 0x3333cc)
+			embed=discord.Embed(description = "Pinching {} is so much fun!".format(ctx.message.author.mention), color = color_blue)
 			embed.set_image(url = y)
 		else:
-			embed=discord.Embed(description = "Ohh, {} pinched {}!".format(ctx.message.author.mention, members), color = 0x3333cc)
+			embed=discord.Embed(description = "Ohh, {} pinched {}!".format(ctx.message.author.mention, members), color = color_blue)
 			embed.set_image(url = y)
 		await bot.say(embed=embed)
 	except:
@@ -1100,9 +1075,8 @@ async def pinch(ctx, *, member=""):
 @bot.command(pass_context=True, no_pm=True, aliases=["r", "r34", "rule"])
 @commands.cooldown(3, 5)
 async def rule34(ctx, *, message:str=None):
-	await bot.send_typing(ctx.message.channel)
 	if ctx.message.channel.is_nsfw == False:
-		embed=discord.Embed(description = "This is not a **nsfw** channel", color = 0x3333cc)
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1117,13 +1091,13 @@ async def rule34(ctx, *, message:str=None):
 		data = json.loads(response.text)
 		limit = len(data)
 	except json.JSONDecodeError:
-		embed=discord.Embed(description = "Couldn't find a picture with that tag or there was a server problem", color = 0x3333cc)
+		embed=discord.Embed(description = "Couldn't find a picture with that tag or there was a server problem", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
 	x = data[random.randint(0, limit-1)]
 	final_url = "http://img.rule34.xxx/images/{}/{}".format(x["directory"], x["image"])
-	embed=discord.Embed(title = "Enjoy {}, lewd!!!".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Enjoy {}, lewd!!!".format(ctx.message.author.name), color = color_blue)
 	embed.set_image(url = final_url)
 	embed.set_footer(text = "From Rule34, Tag: {}, Results found: {}".format(message, limit))
 	await bot.say(embed=embed)
@@ -1131,9 +1105,8 @@ async def rule34(ctx, *, message:str=None):
 @bot.command(pass_context=True, no_pm=True, aliases=["yan"])
 @commands.cooldown(3, 5)
 async def yandere(ctx, *, message:str=None):
-	await bot.send_typing(ctx.message.channel)
 	if ctx.message.channel.is_nsfw == False:
-		embed=discord.Embed(description = "This is not a **nsfw** channel", color = 0x3333cc)
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1148,13 +1121,13 @@ async def yandere(ctx, *, message:str=None):
 	data = json.loads(response.text)
 	limit = len(data)
 	if not data:
-		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = 0x3333cc)
+		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
 	x = data[random.randint(0, limit-1)]
 	final_url = x["file_url"]
-	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = color_blue)
 	embed.set_image(url = final_url)
 	embed.set_footer(text = "From yande.re, Tag: {}, Results found: {}".format(message, limit))
 	await bot.say(embed=embed)
@@ -1162,9 +1135,8 @@ async def yandere(ctx, *, message:str=None):
 @bot.command(pass_context=True, no_pm=True, aliases=["dan"])
 @commands.cooldown(3, 5)
 async def danbooru(ctx, *, message:str=None):
-	await bot.send_typing(ctx.message.channel)
 	if ctx.message.channel.is_nsfw == False:
-		embed=discord.Embed(description = "This is not a **nsfw** channel", color = 0x3333cc)
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1179,7 +1151,7 @@ async def danbooru(ctx, *, message:str=None):
 	data = json.loads(response.text)
 	limit = len(data)
 	if not data:
-		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = 0x3333cc)
+		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1188,7 +1160,7 @@ async def danbooru(ctx, *, message:str=None):
 		final_url = x["file_url"]
 	else:
 		final_url = "http://danbooru.donmai.us{}".format(x["file_url"])
-	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = color_blue)
 	embed.set_image(url = final_url)
 	embed.set_footer(text = "From danbooru, Tag: {}, Results found: {}".format(message, limit))
 	await bot.say(embed=embed)
@@ -1196,9 +1168,8 @@ async def danbooru(ctx, *, message:str=None):
 @bot.command(pass_context=True, no_pm=True, aliases=["gel"])
 @commands.cooldown(3, 5)
 async def gelbooru(ctx, *, message:str=None):
-	await bot.send_typing(ctx.message.channel)
 	if ctx.message.channel.is_nsfw == False:
-		embed=discord.Embed(description = "This is not a **nsfw** channel", color = 0x3333cc)
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1212,13 +1183,13 @@ async def gelbooru(ctx, *, message:str=None):
 	data = json.loads(response.text)
 	limit = len(data)
 	if not data:
-		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = 0x3333cc)
+		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
 	x = data[random.randint(0, limit-1)]
 	final_url = x["file_url"]
-	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = color_blue)
 	embed.set_image(url = final_url)
 	embed.set_footer(text = "From gelbooru, Tag: {}, Results found: {}".format(message, limit))
 	await bot.say(embed=embed)
@@ -1226,9 +1197,8 @@ async def gelbooru(ctx, *, message:str=None):
 @bot.command(pass_context=True, no_pm=True, aliases=["xb"])
 @commands.cooldown(3, 5)
 async def xbooru(ctx, *, message:str=None):
-	await bot.send_typing(ctx.message.channel)
 	if ctx.message.channel.is_nsfw == False:
-		embed=discord.Embed(description = "This is not a **nsfw** channel", color = 0x3333cc)
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1242,13 +1212,13 @@ async def xbooru(ctx, *, message:str=None):
 	data = json.loads(response.text)
 	limit = len(data)
 	if not data:
-		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = 0x3333cc)
+		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
 	x = data[random.randint(0, limit-1)]
 	final_url = "http://img3.xbooru.com/images/{}/{}".format(x["directory"], x["image"])
-	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = color_blue)
 	embed.set_image(url = final_url)
 	embed.set_footer(text = "From xbooru, Tag: {}, Results found: {}".format(message, limit))
 	await bot.say(embed=embed)
@@ -1256,9 +1226,8 @@ async def xbooru(ctx, *, message:str=None):
 @bot.command(pass_context=True, no_pm=True, aliases=["rb"])
 @commands.cooldown(10, 10)
 async def realbooru(ctx, *, message:str=None):
-	await bot.send_typing(ctx.message.channel)
 	if ctx.message.channel.is_nsfw == False:
-		embed=discord.Embed(description = "This is not a **nsfw** channel", color = 0x3333cc)
+		embed=discord.Embed(description = "This is not a **nsfw** channel", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
@@ -1272,13 +1241,13 @@ async def realbooru(ctx, *, message:str=None):
 	data = json.loads(response.text)
 	limit = len(data)
 	if not data:
-		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = 0x3333cc)
+		embed=discord.Embed(description = "Couldn't find a picture with that tag", color = color_blue)
 		x = await bot.say(embed=embed)
 		await asyncio.sleep(5)
 		return await bot.delete_message(x)
 	x = data[random.randint(0, limit-1)]
 	final_url = "https://realbooru.com/images/{}/{}".format(x["directory"], x["image"])
-	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = 0x3333cc)
+	embed=discord.Embed(title = "Enjoy {}, ".format(ctx.message.author.name), color = color_blue)
 	embed.set_image(url = final_url)
 	embed.set_footer(text = "From realbooru, Tag: {}, Results found: {}".format(message, limit))
 	await bot.say(embed=embed)
@@ -1320,17 +1289,17 @@ async def pi():
 #    | |_| |\ V  V / | |\  | |___|  _ < 
 #     \___/  \_/\_/  |_| \_|_____|_| \_\........................
 
-owner = ["285495027411582977", "161600697564004352"] #owner/programmer ID
-
 @bot.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-async def setgame(ctx, *, game : str):
-	if owner[0] != ctx.message.author.id and owner[1] != ctx.message.author.id:
-		return await bot.say("You aren't the bot owner!")
-	else:
+async def setgame(ctx, *, game:str):
+	if ctx.message.author.id in owner_ids:
 		try:
 			await bot.change_presence(game=discord.Game(name=game))
 		except Exception as e:
 			print("Failed to set game: {}".format(str(e)))
+	else:
+		x = await bot.say("You are not the bot owner!")
+		await asyncio.sleep(5)
+		await bot.delete_message(x)
 
 bot.run(token, bot=True, reconnect=True)
