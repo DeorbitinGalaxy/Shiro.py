@@ -2,7 +2,7 @@
 Generic multipurpose discord bot
 
 # Created By:
-StrawHatHacker : https://github.com/StrawHatHacker
+[StrawHatHacker](https://github.com/StrawHatHacker)
 ElliotAlderson :
 
 # Commands:
