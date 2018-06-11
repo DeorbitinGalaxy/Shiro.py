@@ -1,12 +1,14 @@
-# Shiro Discord Bot uwu
+# Shiro Discord Bot uwu (Public Version)
 Generic multipurpose discord bot
 
 # Licence
-* You can download copy and use as you wish
+* You can download, copy, and use as you wish(giving us some credit would be nice)
+* I do not recommend to anyone to host this bot, self-host version will be uploaded soon.
 
 # Created By:
 ###### Programmers:
--[StrawHatHacker](https://github.com/StrawHatHacker), ElliotAlderson :
+* [StrawHatHacker](https://github.com/StrawHatHacker)
+* [ElliotAlderson](https://github.com/HoodElliot)
 
 ###### Help From Github Repos:
 [Fogapod BotMyBot](https://github.com/Fogapod/BotMyBot), 
