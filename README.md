@@ -17,18 +17,18 @@
 
 # Commands:
 ###### Admin:
-warn, mute, unmute, ban, kick, sban, ping, prune, bans, serverinfo
+> warn, mute, unmute, ban, kick, sban, ping, prune, bans, serverinfo
 ###### Games:
-team, 8ball, ship, dice, embed, say, rps
+> team, 8ball, ship, dice, embed, say, rps
 ###### Utility:
-help, aes, intel, invite
+> help, aes, intel, invite
 ###### Fun:
-movie, dog, shibe, cat, bird, fox, lizard, urban, chuck, joke, yesno, fakeid, randomavatar, poll
+> movie, dog, shibe, cat, bird, fox, lizard, urban, chuck, joke, yesno, fakeid, randomavatar, poll
 ###### Reactions:
-cute, kiss, hug, pat, slap, blush, lick, mad, scared, tired, cry, nimu, tickle, run, bite, plot(nsfw), nervous, poke, pout, pinch
+> cute, kiss, hug, pat, slap, blush, lick, mad, scared, tired, cry, nimu, tickle, run, bite, plot(nsfw), nervous, poke, pout, pinch
 ###### NSFW:
-rule34, yandere, danbooru, gelbooru, xbooru, realbooru
+> rule34, yandere, danbooru, gelbooru, xbooru, realbooru
 ###### Math:
-add, sub, mult, div, power, sqr, log, pi
+> add, sub, mult, div, power, sqr, log, pi
 ###### Owner:
-setgame
+> setgame
