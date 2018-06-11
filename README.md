@@ -1,4 +1,5 @@
 # Shiro Discord Bot uwu (Public Version)
+# Repo not supported anymore, its being rewritten in Js
 > Generic multipurpose discord bot
 
 # Licence
