@@ -3,8 +3,8 @@ Generic multipurpose discord bot
 
 # Created By:
 ###### Programmers:
--[StrawHatHacker](https://github.com/StrawHatHacker) \n
-ElliotAlderson :
+-[StrawHatHacker](https://github.com/StrawHatHacker)
+-ElliotAlderson :
 
 # Commands:
 ###### Admin:
