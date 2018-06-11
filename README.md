@@ -3,8 +3,12 @@ Generic multipurpose discord bot
 
 # Created By:
 ###### Programmers:
--[StrawHatHacker](https://github.com/StrawHatHacker)
--ElliotAlderson :
+-[StrawHatHacker](https://github.com/StrawHatHacker), ElliotAlderson :
+###### Help From Github Repos:
+[Fogapod BotMyBot](https://github.com/Fogapod/BotMyBot)
+[ZeroEpoch RubyRoseBot](https://github.com/ZeroEpoch1969/RubyRoseBot)
+[Dank Memer](https://github.com/Dank-Memer/Dank-Memer)
+
 
 # Commands:
 ###### Admin:
