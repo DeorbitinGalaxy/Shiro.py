@@ -37,4 +37,5 @@
 Just in case you want to host it ¯\\_(ツ)_/¯
 
 1. [Rapptz async branch](https://github.com/Rapptz/discord.py)
-2. [Kakos Library](https://github.com/KakolIsSomewhatGay/discord.py) for the nsfw checks
+2. [Kako's Library](https://github.com/KakolIsSomewhatGay/discord.py) for the nsfw checks
+3. Python and a token
