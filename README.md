@@ -1,5 +1,5 @@
 # Shiro Discord Bot uwu (Public Version)
-Generic multipurpose discord bot
+> Generic multipurpose discord bot
 
 # Licence
 * You can download, copy, and use as you wish(giving us some credit would be nice)
@@ -11,9 +11,9 @@ Generic multipurpose discord bot
 * [ElliotAlderson](https://github.com/HoodElliot)
 
 ###### Help From Github Repos:
-> [Fogapod BotMyBot](https://github.com/Fogapod/BotMyBot) 
-> [ZeroEpoch RubyRoseBot](https://github.com/ZeroEpoch1969/RubyRoseBot)
-> [Dank Memer](https://github.com/Dank-Memer/Dank-Memer)
+* [Fogapod BotMyBot](https://github.com/Fogapod/BotMyBot) 
+* [ZeroEpoch RubyRoseBot](https://github.com/ZeroEpoch1969/RubyRoseBot)
+* [Dank Memer](https://github.com/Dank-Memer/Dank-Memer)
 
 # Commands:
 ###### Admin:
