@@ -1,0 +1,24 @@
+aiohttp>=1.0.0,<1.1.0
+websockets>=3.1,<4.0
+
+discord.py latest version
+https://github.com/KakolIsSomewhatGay/discord.py
+	for the nsfw check
+
+./start.sh on linux
+
+imports:
+	discord
+	asyncio
+	time
+	from discord.ext import commands
+	random
+	ball8
+	dicerolling
+	os
+	from ship import shipgo
+	aiohttp
+	requests
+	urllib
+	math
+	pickle
