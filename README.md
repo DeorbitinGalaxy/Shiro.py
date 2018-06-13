@@ -1,10 +1,10 @@
 # Shiro Discord Bot uwu (Public Version)
 # Repo not supported anymore, its being rewritten in Js
 > Generic multipurpose discord bot
+>If you want to use the selfhost version make sure to read the documentation
 
 # Licence
 * You can download, copy, and use as you wish(giving us some credit would be nice)
-* I do not recommend to anyone to host this bot, self-host version will be uploaded soon.
 
 # Created By:
 ###### Programmers:
