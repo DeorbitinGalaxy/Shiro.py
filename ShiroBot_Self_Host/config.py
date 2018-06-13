@@ -1,5 +1,5 @@
 prefix    = ">"
-token     = "k"
+token     = ""
 owner_ids =	[] 
 #======================================================
 loop_time = 240 #seconds #please use multples of 60
