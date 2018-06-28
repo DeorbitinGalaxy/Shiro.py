@@ -5,7 +5,7 @@
 > Generic multipurpose discord bot
 
 # Licence
-* You can download, copy, and use as you wish(giving us some credit would be nice)
+* You can download, copy, and use as you please(giving us some credit would be nice)
 
 # Created By:
 ###### Programmers:
